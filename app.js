@@ -1,6 +1,6 @@
 'use strict';
 // Variables for acquiring the name of the user
-var userName;
+var userName = '';
 var getUserName = 'What is your name?';
 var userAnswer;
 var rightAnswerCount = 0;
@@ -34,8 +34,10 @@ var questionsAndAnswers = {
   }
 };
 
-// Get user name
-userName = prompt(getUserName);
+// Get user name, loop in case they just press enter.
+while (userName === '') {
+  userName = prompt(getUserName);
+}
 console.log('The user\'s name is ' + userName);
 alert('Ok ' + userName + ', let\'s see if you can guess 5 things about me. Ready?');
 
@@ -45,6 +47,21 @@ for (var key in questionsAndAnswers) {
   // Ask the question
   var currentQuestion = questionsAndAnswers[key];
   userAnswer = prompt(key);
+
+  // Check that user entered a valid response
+  while (!userAnswer.toLowerCase().match(/^(yes|no|y|n)$/)) {
+    alert('Must answer with either: yes, no, y, or n.');
+    userAnswer = prompt(key);
+  }
+
+  // Convert y/n answers into yes/no
+  if (userAnswer.toLowerCase() === 'y') {
+    userAnswer = 'yes';
+  }
+  else if (userAnswer.toLowerCase() === 'n') {
+    userAnswer = 'no';
+  }
+
   console.log('User\'s answer = ' + userAnswer.toLowerCase() + ', Actual answer = ' + currentQuestion['answer']);
 
   // Evaluate the response
