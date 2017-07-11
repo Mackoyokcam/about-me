@@ -1,3 +1,21 @@
+body {
+  background-color: skyblue;
+}
 h1 {
-  color: red;
+  color: blue;
+}
+.topic {
+  width: 25%;
+  margin: 0 auto;
+  border: solid 10px;
+  margin-top: 1em;
+  padding: 1em;
+}
+
+p {
+  font-weight: bold;
+}
+
+li {
+  font-style: italic;
 }
