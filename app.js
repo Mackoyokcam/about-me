@@ -36,7 +36,7 @@ var questionsAndAnswers = {
 
 // Get user name, loop in case they just press enter.
 while (userName === '') {
-  userName = prompt(getUserName);
+  userName = prompt(getUserName).toLowerCase();
 }
 console.log('The user\'s name is ' + userName);
 alert('Ok ' + userName + ', let\'s see if you can guess 5 things about me. Ready?');
@@ -49,23 +49,23 @@ for (var key in questionsAndAnswers) {
   userAnswer = prompt(key);
 
   // Check that user entered a valid response
-  while (!userAnswer.toLowerCase().match(/^(yes|no|y|n)$/)) {
+  while (!userAnswer.match(/^(yes|no|y|n)$/)) {
     alert('Must answer with either: yes, no, y, or n.');
     userAnswer = prompt(key);
   }
 
   // Convert y/n answers into yes/no
-  if (userAnswer.toLowerCase() === 'y') {
+  if (userAnswer === 'y') {
     userAnswer = 'yes';
   }
-  else if (userAnswer.toLowerCase() === 'n') {
+  else if (userAnswer === 'n') {
     userAnswer = 'no';
   }
 
-  console.log('User\'s answer = ' + userAnswer.toLowerCase() + ', Actual answer = ' + currentQuestion['answer']);
+  console.log('User\'s answer = ' + userAnswer + ', Actual answer = ' + currentQuestion['answer']);
 
   // Evaluate the response
-  if (userAnswer.toLowerCase() === currentQuestion['answer']) { //correct answer
+  if (userAnswer === currentQuestion['answer']) { //correct answer
     alert(currentQuestion['correctResponse']);
     rightAnswerCount++;
     console.log('User has answered ' + rightAnswerCount + ' questions correctly.');
