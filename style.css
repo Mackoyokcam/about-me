@@ -1,21 +1,38 @@
 body {
   background-color: skyblue;
+  border: solid 10px black;
+  border-radius: 700px 700px;
+  margin: 20px 100px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 h1 {
   color: blue;
+  font-size: 45px;
 }
 .topic {
   width: 25%;
   margin: 0 auto;
   border: solid 10px;
+  border-radius: 100px 100px;
   margin-top: 1em;
-  padding: 1em;
+  padding: 2em;
+  background-color: #22EF9D;
+  font-size: 20px;
 }
 
 p {
   font-weight: bold;
+  font-size: 30px;
+  font-style: italic;
 }
 
 li {
   font-style: italic;
+}
+
+img {
+  margin-top: 20px;
+  border: solid 10px black;
+  border-radius: 100px 100px;
 }
