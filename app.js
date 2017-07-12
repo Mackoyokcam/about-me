@@ -10,7 +10,7 @@ var rightAnswerCount = 0;
 var numberOfTries;
 
 // Set this to update how many tries are given for the number guessing game
-var numberTriesGranted = 10;
+var numberTriesGranted = 4;
 var livedTriesGranted = 6;
 
 // Random number generated for number guessing question.
