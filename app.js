@@ -3,16 +3,20 @@
 // Variables for acquiring the name of the user
 var userName = '';
 var getUserName = 'What is your name?';
+
+// User Variables
 var userAnswer;
 var rightAnswerCount = 0;
 var numberOfTries;
 
 // Set this to update how many tries are given for the number guessing game
-var numberTriesGranted = 4;
+var numberTriesGranted = 10;
 var livedTriesGranted = 6;
 
 // Random number generated for number guessing question.
-var randomNumber = 15;
+var min = Math.ceil(0);
+var max = Math.floor(20);
+var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
 // Sets the state, used for determining whether playing number guessing or where I lived game.
 var numberQuestion = false;
@@ -143,6 +147,8 @@ for (var key in questionsAndAnswers) {
               alert('Answer must be a number between 1 and 20');
               userAnswer = parseInt(prompt(key + ' (' + numberOfTries + ' attempts remaining)'));
             }
+          } else {
+            alert('Sorry, you are out of attempts. The number was ' + currentQuestion['answer']);
           }
         }
       }
@@ -160,6 +166,8 @@ for (var key in questionsAndAnswers) {
 
           console.log('User answer: ' + userAnswer);
           // No current validation, user can input whatever right now.
+        } else {
+          alert('Sorry, you are out of attempts. Here were the answers: ' + currentQuestion['answer'].toString());
         }
       }
     }
@@ -167,6 +175,10 @@ for (var key in questionsAndAnswers) {
   // Done with number guessing game
   if (numberQuestion) {
     numberQuestion = false;
+  }
+
+  if (livedQuestion) {
+    livedQuestion = false;
   }
 }
 
