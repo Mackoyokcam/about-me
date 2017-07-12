@@ -170,5 +170,5 @@ for (var key in questionsAndAnswers) {
   }
 }
 
-
+// In the future, add different alerts for different user right answers here!
 alert('You finished the game ' + userName + '! You answered ' + rightAnswerCount + ' questions correctly');

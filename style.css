@@ -1,19 +1,28 @@
 body {
-  background-color: skyblue;
-  border: solid 10px black;
-  border-radius: 700px 700px;
+  background-image: url('background.jpg');
+}
+
+#circle {
+  border: solid 10px #000033;
+  border-radius: 800px 800px;
   margin: 20px 100px;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
   padding-top: 20px;
+  background: skyblue; /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient(circle, #4d4dff, #0000cc, #00004d); /* Safari */
+  background: -o-radial-gradient(circle, #4d4dff, #0000cc, #00004d); /* Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(circle, #4d4dff, #0000cc, #00004d); /* Firefox 3.6 to 15 */
+  background: radial-gradient(circle, #4d4dff, #0000cc, #00004d); /* Standard syntax */
 }
 h1 {
-  color: blue;
-  font-size: 45px;
+  color: red;
+  font-size: 55px;
+  font-family: monospace;
 }
 .topic {
   width: 25%;
   margin: 0 auto;
-  border: solid 10px;
+  border: solid 5px #E36C39;
   border-radius: 100px 100px;
   margin-top: 1em;
   padding: 2em;
@@ -25,6 +34,7 @@ p {
   font-weight: bold;
   font-size: 30px;
   font-style: italic;
+  color: white;
 }
 
 li {
@@ -33,6 +43,6 @@ li {
 
 img {
   margin-top: 20px;
-  border: solid 10px black;
-  border-radius: 100px 100px;
+  border: solid 5px #E36C39;
+  border-radius: 100% 100%;
 }
