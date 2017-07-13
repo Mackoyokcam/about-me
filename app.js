@@ -60,127 +60,130 @@ var questionsAndAnswers = {
     'wrongResponse': 'Nope, I have not lived there.'
   }
 };
+function startrun() {
 
 // Get user name, loop in case they just press enter.
-while (userName === '') {
-  userName = prompt(getUserName);
-}
-console.log('The user\'s name is ' + userName);
-alert('Ok ' + userName + ', let\'s see if you can guess 5 things about me. Ready?');
-
-// Cycle through questions and responses, get user answers
-for (var key in questionsAndAnswers) {
-  numberOfTries = 1;
-  // Ask the question
-  var currentQuestion = questionsAndAnswers[key];
-  // Check if it's the number guessing question
-  if (currentQuestion['answer'] === parseInt(currentQuestion['answer'], 10)) {
-    userAnswer = parseInt(prompt(key + ' (' + numberTriesGranted + ' attempts remaining)'));
-    numberQuestion = true; // set the state
-  } else if (currentQuestion['answer'].constructor === Array) {   // Check if it's the 'where have i lived' question
-    livedQuestion = true;
-    userAnswer = prompt(key + ' (' + livedTriesGranted + ' attempts remaining)').toLowerCase();
-  } else {
-    userAnswer = prompt(key).toLowerCase();
+  while (userName === '') {
+    userName = prompt(getUserName);
   }
+  console.log('The user\'s name is ' + userName);
+  alert('Ok ' + userName + ', let\'s see if you can guess 5 things about me. Ready?');
 
-  // Validate numbered question
-  if (numberQuestion) {
-    while (isNaN(userAnswer) || userAnswer < 0 || userAnswer > 20) {
-      alert('Answer must be a number between 1 and 20');
+  // Cycle through questions and responses, get user answers
+  for (var key in questionsAndAnswers) {
+    numberOfTries = 1;
+    // Ask the question
+    var currentQuestion = questionsAndAnswers[key];
+    // Check if it's the number guessing question
+    if (currentQuestion['answer'] === parseInt(currentQuestion['answer'], 10)) {
       userAnswer = parseInt(prompt(key + ' (' + numberTriesGranted + ' attempts remaining)'));
-    }
-  } else if (!livedQuestion){ // validate normal yes/no question
-    while (!userAnswer.match(/^(yes|no|y|n)$/)) {
-      alert('Must answer with either: yes, no, y, or n.');
+      numberQuestion = true; // set the state
+    } else if (currentQuestion['answer'].constructor === Array) {   // Check if it's the 'where have i lived' question
+      livedQuestion = true;
+      userAnswer = prompt(key + ' (' + livedTriesGranted + ' attempts remaining)').toLowerCase();
+    } else {
       userAnswer = prompt(key).toLowerCase();
     }
-  }
-  // No validation for Where I Lived question
+
+    // Validate numbered question
+    if (numberQuestion) {
+      while (isNaN(userAnswer) || userAnswer < 0 || userAnswer > 20) {
+        alert('Answer must be a number between 1 and 20');
+        userAnswer = parseInt(prompt(key + ' (' + numberTriesGranted + ' attempts remaining)'));
+      }
+    } else if (!livedQuestion){ // validate normal yes/no question
+      while (!userAnswer.match(/^(yes|no|y|n)$/)) {
+        alert('Must answer with either: yes, no, y, or n.');
+        userAnswer = prompt(key).toLowerCase();
+      }
+    }
+    // No validation for Where I Lived question
 
 
-  // Convert y/n answers into yes/no
-  if (userAnswer === 'y') {
-    userAnswer = 'yes';
-  }
-  else if (userAnswer === 'n') {
-    userAnswer = 'no';
-  }
+    // Convert y/n answers into yes/no
+    if (userAnswer === 'y') {
+      userAnswer = 'yes';
+    }
+    else if (userAnswer === 'n') {
+      userAnswer = 'no';
+    }
 
-  console.log('User\'s answer = ' + userAnswer + ', Actual answer = ' + currentQuestion['answer']);
+    console.log('User\'s answer = ' + userAnswer + ', Actual answer = ' + currentQuestion['answer']);
 
-  // Set the number of attempts
-  if (numberQuestion) {
-    numberOfTries = numberTriesGranted;
-  }
-  if (livedQuestion) {
-    numberOfTries = livedTriesGranted;
-  }
+    // Set the number of attempts
+    if (numberQuestion) {
+      numberOfTries = numberTriesGranted;
+    }
+    if (livedQuestion) {
+      numberOfTries = livedTriesGranted;
+    }
 
-  // Evaluate the response
-  while (numberOfTries > 0) {
-    if (!livedQuestion) {
-      if (userAnswer === currentQuestion['answer']) { //correct answer
-        alert(currentQuestion['correctResponse']);
-        rightAnswerCount++;
-        numberOfTries = 0;
-        console.log('User has answered ' + rightAnswerCount + ' questions correctly.');
-      } else { // wrong answer
-        numberOfTries--;
-        if (!numberQuestion) {
-          alert(currentQuestion['wrongResponse']);
-        } else {
-          // Higher or Lower algorithm
-          if (userAnswer < currentQuestion['answer']) {
-            alert(currentQuestion['wrongResponse'] + ' (Higher!)');
+    // Evaluate the response
+    while (numberOfTries > 0) {
+      if (!livedQuestion) {
+        if (userAnswer === currentQuestion['answer']) { //correct answer
+          alert(currentQuestion['correctResponse']);
+          rightAnswerCount++;
+          numberOfTries = 0;
+          console.log('User has answered ' + rightAnswerCount + ' questions correctly.');
+        } else { // wrong answer
+          numberOfTries--;
+          if (!numberQuestion) {
+            alert(currentQuestion['wrongResponse']);
           } else {
-            alert(currentQuestion['wrongResponse'] + ' (Lower!)');
-          }
-
-          // If more attempts allowed, ask question again.
-          if (numberOfTries !== 0) {
-            userAnswer = parseInt(prompt(key + ' (' + numberOfTries + ' attempts remaining)'));
-
-            console.log('User answer: ' + userAnswer);
-            // Validate user input
-            while (isNaN(userAnswer) || userAnswer < 0 || userAnswer > 20) {
-              alert('Answer must be a number between 1 and 20');
-              userAnswer = parseInt(prompt(key + ' (' + numberOfTries + ' attempts remaining)'));
+            // Higher or Lower algorithm
+            if (userAnswer < currentQuestion['answer']) {
+              alert(currentQuestion['wrongResponse'] + ' (Higher!)');
+            } else {
+              alert(currentQuestion['wrongResponse'] + ' (Lower!)');
             }
-          } else {
-            alert('Sorry, you are out of attempts. The number was ' + currentQuestion['answer']);
+
+            // If more attempts allowed, ask question again.
+            if (numberOfTries !== 0) {
+              userAnswer = parseInt(prompt(key + ' (' + numberOfTries + ' attempts remaining)'));
+
+              console.log('User answer: ' + userAnswer);
+              // Validate user input
+              while (isNaN(userAnswer) || userAnswer < 0 || userAnswer > 20) {
+                alert('Answer must be a number between 1 and 20');
+                userAnswer = parseInt(prompt(key + ' (' + numberOfTries + ' attempts remaining)'));
+              }
+            } else {
+              alert('Sorry, you are out of attempts. The number was ' + currentQuestion['answer']);
+            }
           }
         }
-      }
-    } else {  // For where i lived question
-      if (currentQuestion['answer'].includes(userAnswer)) {
-        alert(currentQuestion['correctResponse'] + ' The correct answers were: ' + currentQuestion['answer']);
-        rightAnswerCount++;
-        numberOfTries = 0;
-        console.log('User has answered ' + rightAnswerCount + ' questions correctly.');
-      } else {
-        alert(currentQuestion['wrongResponse']);
-        numberOfTries--;
-        if (numberOfTries !== 0) {
-          userAnswer = prompt(key + ' (' + numberOfTries + ' attempts remaining)').toLowerCase();
-
-          console.log('User answer: ' + userAnswer);
-          // No current validation, user can input whatever right now.
+      } else {  // For where i lived question
+        if (currentQuestion['answer'].includes(userAnswer)) {
+          alert(currentQuestion['correctResponse'] + ' The correct answers were: ' + currentQuestion['answer']);
+          rightAnswerCount++;
+          numberOfTries = 0;
+          console.log('User has answered ' + rightAnswerCount + ' questions correctly.');
         } else {
-          alert('Sorry, you are out of attempts. Here were the answers: ' + currentQuestion['answer'].toString());
+          alert(currentQuestion['wrongResponse']);
+          numberOfTries--;
+          if (numberOfTries !== 0) {
+            userAnswer = prompt(key + ' (' + numberOfTries + ' attempts remaining)').toLowerCase();
+
+            console.log('User answer: ' + userAnswer);
+            // No current validation, user can input whatever right now.
+          } else {
+            alert('Sorry, you are out of attempts. Here were the answers: ' + currentQuestion['answer'].toString());
+          }
         }
       }
     }
-  }
-  // Done with number guessing game
-  if (numberQuestion) {
-    numberQuestion = false;
+    // Done with number guessing game
+    if (numberQuestion) {
+      numberQuestion = false;
+    }
+
+    if (livedQuestion) {
+      livedQuestion = false;
+    }
   }
 
-  if (livedQuestion) {
-    livedQuestion = false;
-  }
+  // In the future, add different alerts for different user right answers here!
+  alert('You finished the game ' + userName + '! You answered ' + rightAnswerCount + ' questions correctly');
 }
-
-// In the future, add different alerts for different user right answers here!
-alert('You finished the game ' + userName + '! You answered ' + rightAnswerCount + ' questions correctly');
+startrun();
