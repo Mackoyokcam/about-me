@@ -12,7 +12,7 @@ window.onload = function() {
   var validAnswer;
 
   // Set this to update how many tries are given for the number guessing game
-  var numberTriesGranted = 10;
+  var numberTriesGranted = 7;
   var livedTriesGranted = 6;
 
   // Set this to update the start and end numbers for number guessing game
@@ -30,17 +30,17 @@ window.onload = function() {
   var numberQuestion = false;
   var livedQuestion = false;
 
-  // Yes or no questions for guessing game
+  // Questions for guessing game, add or remove questions (of same types) as you please
   var questionsAndAnswers = {
-    'Is my favorite color blue?': {
+    'Have I ever lived outside the USA?': {
       'answer': 'yes',
-      'correctResponse': 'Blue is my favorite color!',
-      'wrongResponse': 'Wrong! I love blue...'
+      'correctResponse': 'Yes! In the Philippines for 13 years.',
+      'wrongResponse': 'Wrong! I have lived in the Philippines.'
     },
-    'Do I like to play video games?': {
+    'Have I ever broken a bone?': {
       'answer': 'yes',
-      'correctResponse': 'Yep! Every video game there is!',
-      'wrongResponse': 'Nope! Why would you think that?!'
+      'correctResponse': 'Sure did. My left middle finger and it twitches sometimes when I code.',
+      'wrongResponse': 'Incorrect, I broke my left middle finger playing flag-football.'
     },
     'Do I have 2 dogs as pets?': {
       'answer': 'no',
@@ -68,6 +68,8 @@ window.onload = function() {
       'wrongResponse': 'Nope, I have not lived there.'
     },
   };
+
+  /*---------------------Helper Functions-------------------*/
 
   // Check if the user entered nothing
   function valBlankEntries() {
@@ -131,6 +133,8 @@ window.onload = function() {
     console.log('The user\'s name is ' + userName);
     alert('Ok ' + userName + ', let\'s see if you can guess 5 things about me. Ready?');
   }
+
+/*----------------End helper functions------------------*/
 
   /*
     Main:
